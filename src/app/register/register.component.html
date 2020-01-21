@@ -1,6 +1,6 @@
 <app-header title="Register"></app-header>
 
-<form [formGroup]="registerForm" (ngSubmit)="add()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
     <div>
         <input placeholder="firstName" formControlName="firstName" name="name" type="text">
         <div *ngIf="hasError('firstName')">
@@ -20,6 +20,7 @@
         <div *ngIf="hasError('email')">
             <p *ngIf="get('email').errors.required">Email is required</p>
             <p *ngIf="get('email').errors.minlength">Email should be atleast 3 characters</p>
+            <p *ngIf="get('email').errors.email">Email is invalid</p>
         </div>
     </div>
     <div>
@@ -34,8 +35,8 @@
         <div *ngIf="hasError('confirmPassword')">
             <p *ngIf="get('confirmPassword').errors.required">Confirm Password is required</p>
             <p *ngIf="get('confirmPassword').errors.minlength">Confirm Password should be atleast 3 characters</p>
-            <p *ngIf="get('confirmPassword').errors.passwordNotSame">Confirm Password doesn't match</p>
         </div>
+        <p *ngIf="!hasError('confirmPassword')&&registerForm.errors?.passwordNotSame">Confirm Password doesn't match</p>
         
     </div>
     <button type="submit" [disabled]="!registerForm.valid">Add</button>
