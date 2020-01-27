@@ -1,6 +1,7 @@
 <app-header (sendData)="onHeaderClick($event)" [title]="title"></app-header>
 <h1>{{title}}</h1>
 <p>Header was clicked {{count}} times.</p>
+<p>Hello {{ user.firstName }} {{ user.lastName }}</p>
 <button (click)="addTodo()">Add Todo</button>
 <table>
     <thead>
